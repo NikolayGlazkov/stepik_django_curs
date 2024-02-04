@@ -1,0 +1,25 @@
+<!-- ferst/templates/ferst/edit_client.html -->
+{% extends "ferst/base.html" %}
+
+{% block title %}Редактировать клиента{% endblock %}
+
+{% block content %}
+    <h2>Редактировать клиента</h2>
+    <form method="post" action="{% url 'edit_client' %}">
+        {% csrf_token %}
+        <label for="inn">Введите ИНН:</label>
+        <input type="text" name="inn" value="{{ client.inn }}" required>
+        <button type="submit">Найти клиента</button>
+    </form>
+
+    {% if client %}
+        <h3>Данные клиента:</h3>
+        <form method="post" action="{% url 'save_edited_client' client.inn %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Сохранить изменения</button>
+        </form>
+    {% else %}
+        <p>ИНН клиента отсутствует или некорректен.</p>
+    {% endif %}
+{% endblock %}

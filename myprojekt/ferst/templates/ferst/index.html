@@ -1,0 +1,25 @@
+<!-- Ваш шаблон index.html -->
+{% extends "ferst/base.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <h2>Главная страница</h2>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'create_client' %}">Добавить клиента</a></li>
+            <li><a href="{% url 'show_clients' %}">Список клиентов</a></li>
+        </ul>
+    </nav>
+
+    <!-- Форма для ввода ИНН -->
+    <!-- index.html -->
+<form method="post" action="{% url 'edit_client' %}">
+    {% csrf_token %}
+    {{ inn_form.as_p }}
+    <button type="submit">Редактировать пользователя</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!-- ferst/templates/ferst/show_clients.html -->
+{% extends "ferst/base.html" %}
+
+{% block title %}Список клиентов{% endblock %}
+
+{% block content %}
+<li><a href="{% url 'index' %}">Главная</a></li>
+<h2>Список клиентов</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>ИНН</th>
+            <th>почта</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.fio }}</td>
+            <td>{{ client.inn }}</td>
+            <td>{{ client.clientMail }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
